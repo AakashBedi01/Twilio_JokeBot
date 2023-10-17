@@ -1,10 +1,7 @@
-from typing import Any
-
-import requests
 from flask import Flask, request
 from twilio.twiml.voice_response import VoiceResponse
-from twilio.twiml.message_response import MessagingResponse
-
+from twilio.twiml.messaging_response import MessagingResponse
+import requests
 
 def get_joke():
     url = "https://v2.jokeapi.dev/joke/Programming,Miscellaneous?blacklistFlags=religious,political,racist,sexist"
@@ -17,9 +14,7 @@ def get_joke():
             return f"{joke_data.get('setup')} {joke_data.get('delivery')}"
     return "Sorry, I couldn't find a joke for you."
 
-
 app = Flask(__name__)
-
 
 @app.route('/voice', methods=['POST'])
 def voice():
@@ -29,15 +24,14 @@ def voice():
 
     return str(resp)
 
-
 @app.route('/sms', methods=['POST'])
 def sms():
-    print(request.form)
-    joke: get_joke()
+    joke = get_joke()  # Fix the typo here
     number = request.form['From']
     resp = MessagingResponse()
-    resp.message(f"hello {number}, This is your joke of the day! \n {joke} ")
+    resp.message(f"Hello {number}, this is your joke of the day!\n{joke}")
 
+    return str(resp)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
