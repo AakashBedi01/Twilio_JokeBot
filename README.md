@@ -26,7 +26,7 @@ To use the Twilio JokeBot, you need to configure a few things:
    - The service fetches jokes from an external joke API by default (https://v2.jokeapi.dev/). Ensure the API is accessible and reliable.
 
 ## Usage
-1. Clone this repository to your local machine: git clone https://github.com/yourusername/Twilio_JokeBot.git
+1. Clone this repository to your local machine: git clone https://github.com/AakashBedi01/Twilio_JokeBot.git
 
 2. Open a terminal and navigate to the project directory.
 
